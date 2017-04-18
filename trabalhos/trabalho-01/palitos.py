@@ -19,11 +19,11 @@ class Game(object):
 
             for player, data in self.player_data.items():
                 # data[1] = randint(0, data[0])
-                print("Jogador: {}".format(player))
+                print("\nJogador: {}".format(player))
                 data[1] = int(input("Quantos palitos irá guardar na mão?\n"))
 
             for player in self.play_order:
-                print("Jogador: {}".format(player))
+                print("\nJogador: {}".format(player))
                 hunch = int(input("Qual seu palpite?\n"))
                 if hunch not in hunches:
                     self.player_data[player][2] = hunch
@@ -33,6 +33,8 @@ class Game(object):
             if winner:
                 print("{} ganhou a rodada\n".format(winner))
                 self.player_data[winner][0] -= 1
+                self.play_order.remove(winner)
+                self.play_order.insert(0, winner)
 
             print(self.player_data)
             self.reset()
